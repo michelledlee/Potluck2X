@@ -6,7 +6,7 @@ import { Meteor } from "meteor/meteor";
 
 import { withTracker } from "meteor/react-meteor-data";
 
-import Attendee from "./Attendee.js";
+import Attendee from "./Attendee.jsx";
 import Event from "./Event.jsx";
 
 

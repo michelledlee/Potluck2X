@@ -45,24 +45,24 @@ class Chat extends Component {
         });
 
 
-      // // Messages.insert(
-      // //   {
-      // //     message: this.state.message,
-      // //     owner : Meteor.user().username
-      // //   },
-      // //   (err, res) => {
-      // //     if (err) {
-      // //       alert("There was error inserting check the console");
-      // //       console.log(err);
-      // //       return;
-      // //     }
+      Messages.insert(
+        {
+          message: this.state.message,
+          owner : Meteor.user().username
+        },
+        (err, res) => {
+          if (err) {
+            alert("There was error inserting check the console");
+            console.log(err);
+            return;
+          }
 
-      // //     console.log("Message inserted", res);
-      // //     this.setState({
-      // //       message: ""
-      // //     });
-      // //   }
-      // );
+          console.log("Message inserted", res);
+          this.setState({
+            message: ""
+          });
+        }
+      );
     }
   }
 

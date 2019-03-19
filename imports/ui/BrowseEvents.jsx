@@ -32,7 +32,10 @@ class BrowseEvents extends Component {
   // }
 
   renderEvents() {
-    return this.state.events.map((eve, i) => <EventRSVP key={i++} event={eve} />);
+    // return this.state.events.map((eve, i) => <EventRSVP key={i++} event={eve} />);
+
+    return this.props.events.map(m =>
+      <div className="card" key={m._id}>{m.owner} : {m.event}</div>);
   }
 
   render() {
