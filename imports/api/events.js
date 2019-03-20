@@ -27,7 +27,7 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    Events.insert({
+    return Events.insert({
       name : event.name,
       date : event.date,
       time : event.time, 
@@ -38,4 +38,18 @@ Meteor.methods({
     });
 
   }
-});
+  });
+
+// Meteor.methods({
+//   "events.getid"(event)  {
+//     // check(message, String);
+
+//     // Make sure the user is logged in before inserting a task
+//     if (! this.userId) {
+//       throw new Meteor.Error("not-authorized");
+//     }
+
+//     return Events.find({name: event.name});
+
+//   }
+// });

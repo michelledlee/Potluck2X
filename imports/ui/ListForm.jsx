@@ -8,7 +8,7 @@ import Attendee from "./Attendee.jsx";
 import { Events } from "../api/events.js";
 import { Schema } from "./schema.js";
 
-class ListForm extends Component {
+export default class ListForm extends Component {
   constructor() {
     super();
 
@@ -25,9 +25,9 @@ class ListForm extends Component {
     }
   }
   
-  renderList() {
-    return this.state.list.map((l, i) => <List key={i++} list={l} />);
-  }
+  // renderList() {
+  //   return this.state.list.map((l, i) => <List key={i++} list={l} />);
+  // }
 
   onClick(e) {
     const list = {
@@ -90,11 +90,11 @@ ListForm.propTypes = {
   ListForm: PropTypes.object
 };
 
-export default withTracker(() => {
-  const handle = Meteor.subscribe("events");
-  return {
-    events: Events.find({}).fetch(),
-    user: Meteor.user(),
-    ready: handle.ready()
-  };
-})(ListForm);
+// export default withTracker(() => {
+//   const handle = Meteor.subscribe("events");
+//   return {
+//     events: Events.find({}).fetch(),
+//     user: Meteor.user(),
+//     ready: handle.ready()
+//   };
+// })(ListForm);

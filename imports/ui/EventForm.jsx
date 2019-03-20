@@ -5,12 +5,14 @@ import { AutoForm } from "uniforms-semantic";
 import { withTracker } from "meteor/react-meteor-data";
 import { Events } from "../api/events.js";
 import { Schema } from "./schema.js";
+import { ListForm } from "./ListForm.jsx";
 
 class EventForm extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			id: "",
 			name: "",
 			date: "",
 			time: "",
@@ -21,25 +23,117 @@ class EventForm extends Component {
 		};
 	}
 
-	onSubmit(data) {
+	onSubmit1(event) {
+		event.preventDefault();
+		let data = {name: this.eventname.value, date: this.eventdate.value};
 		Meteor.call("events.insert", data, (err, res) => {
 				if (err) {
 					alert("There was error inserting check the console");
 					console.log(err);
 					return;
 				}
-
-				console.log("Message inserted", res);
 				this.setState({
-					description: ""
-				});
+        id: res
+      });
+				console.log(res);
 			})
+
+		// Meteor.call("events.getid", data, (err, res) => {
+		// 		this.setState({
+		// 			id: res._id;
+		// 		});
+		// 	})
 		}
 	
 	
 
 	render() {
-		return <AutoForm schema={Schema} onSubmit={this.onSubmit.bind(this)} />;
+		// return <AutoForm schema={Schema} onSubmit={this.onSubmit.bind(this)} />;
+		return (
+		      <div className="Comment col-4">
+    <form
+                  className="form-signin"
+                  noValidate
+                  onSubmit={this.onSubmit1.bind(this)}
+                >
+                  <div className="form-label-group">
+                    <label htmlFor="name">Name</label>
+
+                    <input
+                      id="name"
+                      type="text"
+                      ref={input => (this.eventname = input)}
+                    />
+                  </div>
+                  <div className="form-label-group">
+                    <label htmlFor="date">Date</label>
+                    <input
+                      id="date"
+                      type="date"
+                          ref={input => (this.eventdate = input)}
+
+                    />
+                  </div>
+                      <div className="form-label-group">
+                        <button
+                          style={{
+                            width: "150px",
+                            borderRadius: "3px",
+                            letterSpacing: "1.5px",
+                            marginTop: "1rem"
+                          }}
+                          type="submit"
+                          className="btn btn-lg btn-primary btn-block text-uppercase"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                </form>
+
+                      {this.state.id != "" ?  <ListForm id={this.state.id} /> : <div>sugma</div>}
+
+                    <form
+                  className="form-signin"
+                  noValidate
+                  onSubmit={this.onSubmit}
+                >
+                  <div className="form-label-group">
+                    <label htmlFor="name">Name</label>
+
+                    <input
+                      id="name"
+                      type="text"
+                                            ref={input => (this.name = input)}
+
+                    />
+                  </div>
+                  <div className="form-label-group">
+                    <label htmlFor="date">Quantity</label>
+                    <input
+                      id="quantity"
+                      type="quantity"
+                                            ref={input => (this.quantity = input)}
+
+                    />
+                  </div>
+                      <div className="form-label-group">
+                        <button
+                          style={{
+                            width: "150px",
+                            borderRadius: "3px",
+                            letterSpacing: "1.5px",
+                            marginTop: "1rem"
+                          }}
+                          type="submit"
+                          className="btn btn-lg btn-primary btn-block text-uppercase"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                </form>
+      <br />
+      </div>
+      )
 	}
 }
 
