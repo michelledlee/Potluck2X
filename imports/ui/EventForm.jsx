@@ -5,7 +5,7 @@ import { AutoForm } from "uniforms-semantic";
 import { withTracker } from "meteor/react-meteor-data";
 import { Events } from "../api/events.js";
 import { Schema } from "./schema.js";
-import { ListForm } from "./ListForm.jsx";
+import  ListForm  from "./ListForm.jsx";
 
 class EventForm extends Component {
 	constructor(props) {
@@ -35,6 +35,7 @@ class EventForm extends Component {
 			this.setState({
 				id: res
 			});
+			console.log(this.state.id)
 			console.log(res);
 		});
 	}
@@ -82,7 +83,7 @@ class EventForm extends Component {
 				</form>
 
 				{this.state.id != "" ? (
-					<ListForm id={this.state.id} />
+					<ListForm iddqd={this.state.id} />
 				) : (
 					<div>sugma</div>
 				)}

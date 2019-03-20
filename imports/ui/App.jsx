@@ -26,7 +26,6 @@ const HomeComponent = () => {
       <BrowseEvents />
       <Event />
       <EventForm />
-      <ListForm />
 
     </div>
   );

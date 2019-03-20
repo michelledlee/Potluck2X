@@ -13,7 +13,10 @@ export default class ListForm extends Component {
     super(props);
 
     this.state = {
-      id: this.props.events.id,
+      id: this.props.id,
+      item: "",
+      quantity: "",
+      iteminfo: ""
       // name: this.props.events.name,
       // date: this.props.events.date,
       // time: this.props.events.time,
@@ -30,8 +33,12 @@ export default class ListForm extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    let iteminfo = this.item.value + this.quantity.value;
-    let data = { id: this.id.value, iteminfo: iteminfo };
+    console.log(this.itemname.value);
+    console.log(this.quantityname.value);
+    let iteminfo = this.itemname.value + this.quantityname.value;
+        console.log(iteminfo);
+
+    let data = { objid: this.state.id, iteminfo: iteminfo };
     Meteor.call("items.insert", data, (err, res) => {
       if (err) {
         alert("There was error inserting check the console");
@@ -55,7 +62,7 @@ export default class ListForm extends Component {
             <input
               id="item"
               type="text"
-              ref={input => (this.item = input)}
+              ref={input => (this.itemname = input)}
             />
           </div>
           <div className="form-label-group">
@@ -63,7 +70,7 @@ export default class ListForm extends Component {
             <input
               id="quantity"
               type="quantity"
-              ref={input => (this.quantity = input)}
+              ref={input => (this.quantityname = input)}
             />
           </div>
           <div className="form-label-group">
@@ -79,8 +86,10 @@ export default class ListForm extends Component {
             >
               Submit
             </button>
+
           </div>
         </form>
+
         <br />
       </div>
     );
@@ -88,7 +97,7 @@ export default class ListForm extends Component {
 }
 
 ListForm.propTypes = {
-  ListForm: PropTypes.object
+  iddqd: PropTypes.string
 };
 
 // export default withTracker(() => {
