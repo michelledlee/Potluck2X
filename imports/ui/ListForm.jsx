@@ -12,6 +12,9 @@ export default class ListForm extends Component {
   constructor(props) {
     super(props);
 
+    this.itemname = "";
+    this.quantityname ="";
+    this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       id: this.props.id,
       item: "",
@@ -33,8 +36,6 @@ export default class ListForm extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log(this.itemname.value);
-    console.log(this.quantityname.value);
     let iteminfo = this.itemname.value + this.quantityname.value;
         console.log(iteminfo);
 

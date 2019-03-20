@@ -44,7 +44,7 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
 
-    Events.findOneAndUpdate({ _id: event.id }, 
+    Events.update({ _id: event.id }, 
       { $addToSet: {list: event.iteminfo} });
   }
 });
