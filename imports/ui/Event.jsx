@@ -13,7 +13,8 @@ class Event extends Component {
       name: this.props.events.name,
       date: this.props.events.date,
       time: this.props.events.time,
-      description: this.props.events.description
+      description: this.props.events.description,
+      list: this.props.events.list
     };
   }
 

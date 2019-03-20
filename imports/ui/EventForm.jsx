@@ -22,18 +22,7 @@ class EventForm extends Component {
 	}
 
 	onSubmit(data) {
-		Events.insert(
-			{
-				message: this.state.message,
-				name: this.state.name,
-				date: this.state.date,
-				time: this.state.time,
-				description: this.state.description,
-				list: this.state.list,
-				createdAt: Date.now(),
-				owner: Meteor.user().username
-			},
-			(err, res) => {
+		Meteor.call("events.insert", data, (err, res) => {
 				if (err) {
 					alert("There was error inserting check the console");
 					console.log(err);
@@ -42,11 +31,12 @@ class EventForm extends Component {
 
 				console.log("Message inserted", res);
 				this.setState({
-					message: ""
+					description: ""
 				});
-			}
-		);
-	}
+			})
+		}
+	
+	
 
 	render() {
 		return <AutoForm schema={Schema} onSubmit={this.onSubmit.bind(this)} />;

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 
 import { withTracker } from "meteor/react-meteor-data";
-import { Events } from "../api/events.js";
 
+import { Events } from "../api/events.js";
 import EventRSVP from "./EventRSVP.jsx";
 
 
@@ -32,10 +32,10 @@ class BrowseEvents extends Component {
   // }
 
   renderEvents() {
-    // return this.state.events.map((eve, i) => <EventRSVP key={i++} event={eve} />);
+    return this.state.events.map((eve, i) => <EventRSVP key={i++} event={eve} />);
 
-    return this.props.events.map(m =>
-      <div className="card" key={m._id}>{m.owner} : {m.event}</div>);
+    // return this.props.events.map(m =>
+    //   <div className="card" key={m._id}>{m.owner} : {m.event}</div>);
   }
 
   render() {

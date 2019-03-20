@@ -8,6 +8,7 @@ import EventRSVP from "./EventRSVP.jsx";
 import RegisterEvent from "./RegisterEvent.jsx";
 import NavBar from "./NavBar.jsx";
 import EventForm from "./EventForm.jsx";
+import ListForm from "./ListForm.jsx";
 
 import { withTracker } from "meteor/react-meteor-data";
 
@@ -25,6 +26,7 @@ const HomeComponent = () => {
       <BrowseEvents />
       <Event />
       <EventForm />
+      <ListForm />
 
     </div>
   );

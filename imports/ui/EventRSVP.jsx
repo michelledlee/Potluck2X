@@ -7,7 +7,9 @@ import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
 
 import Attendee from "./Attendee.jsx";
+import List from "./List.jsx";
 import Event from "./Event.jsx";
+import ListForm from "./ListForm.jsx";
 
 
 class EventRSVP extends Component {
@@ -18,6 +20,8 @@ class EventRSVP extends Component {
       name: this.props.events.name,
       date: this.props.events.date,
       time: this.props.events.time,
+      description: this.props.events.description,
+      list: this.props.events.list,
       attendees: this.props.events.rsvp
     };
   }
@@ -29,13 +33,17 @@ class EventRSVP extends Component {
       });
     }
   }
+
+  renderList() {
+    return this.state.list.map((l, i) => <List key={i++} list={l} />);
+  }
   
   renderAttendees() {
     return this.state.attendees.map((a, i) => <Attendee key={i++} attendee={a} />);
   }
 
   onClick(e) {
-    // RSVP this person
+    // RSVP this person, need a meteor method for this
   }
 
   render() {
@@ -47,6 +55,7 @@ class EventRSVP extends Component {
       <span><strong>Time:</strong> {this.props.events.time}</span><br />
       <span className="spandescription"><strong>Description: </strong> {this.props.events.description}</span>
       </p>
+      <span><strong>List:</strong> {this.props.events.list}</span>
             <span><strong>Attendees:</strong> {this.props.events.attendees}</span>
              <nav>
             <ol>

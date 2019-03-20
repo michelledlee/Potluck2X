@@ -33,9 +33,9 @@ Meteor.methods({
       time : event.time, 
       description : event.description,
       list : event.list,
-      message : message,
       createdAt : Date.now(),
       owner : Meteor.user().username
     });
+
   }
 });
