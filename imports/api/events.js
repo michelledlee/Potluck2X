@@ -54,3 +54,14 @@ Meteor.methods({
       { $set: {list: neweventlist} });
   }
 });
+
+Meteor.methods({
+  "events.get"() {
+    // Make sure the user is logged in before inserting a task
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    return Events.find({});
+  }
+});

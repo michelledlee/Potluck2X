@@ -16,26 +16,35 @@ class BrowseEvents extends Component {
     };
   }
 
-  // getAllEvents() {
-  //   fetch("/getallevents")
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log("got all events!", data);
-  //       this.setState({
-  //         events: data
-  //       });
-  //     });
-  // }
+  getAllEvents() {
+    event.preventDefault();
+    Meteor.call("events.get", (err, res) => {
+      if (err) {
+        alert("There was an error getting");
+        console.log(err);
+        return;
+      }
+      this.setState({
+        events: res
+      });
+      console.log(res);
+    });
+  }
 
-  // componentDidMount() {
-  //   this.getAllEvents();
-  // }
+  componentDidMount() {
+    this.getAllEvents();
+  }
 
   renderEvents() {
     return this.state.events.map((eve, i) => <EventRSVP key={i++} event={eve} />);
 
     // return this.props.events.map(m =>
     //   <div className="card" key={m._id}>{m.owner} : {m.event}</div>);
+  }
+
+  makeatherender() {
+    return this.props.events.map(m =>
+      <div className="card" key={m._id}>{m.owner} : {m.name}</div>);
   }
 
   render() {
@@ -45,7 +54,7 @@ class BrowseEvents extends Component {
           <div className="col s12 center-align" style={{ padding: "100px" }}>
             <p>Look at all these events:</p>
 
-            <div className="row">{this.renderEvents()}</div>
+            <div className="row">{this.makeatherender()}</div>
 
           </div>
         </div>
@@ -54,9 +63,9 @@ class BrowseEvents extends Component {
   }
 }
 
-// BrowseEvents.propTypes = {
-//   auth: PropTypes.object.isRequired
-// };
+BrowseEvents.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 // const mapStateToProps = state => ({
 //   auth: state.auth
