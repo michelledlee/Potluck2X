@@ -25,115 +25,72 @@ class EventForm extends Component {
 
 	onSubmit1(event) {
 		event.preventDefault();
-		let data = {name: this.eventname.value, date: this.eventdate.value};
+		let data = { name: this.eventname.value, date: this.eventdate.value };
 		Meteor.call("events.insert", data, (err, res) => {
-				if (err) {
-					alert("There was error inserting check the console");
-					console.log(err);
-					return;
-				}
-				this.setState({
-        id: res
-      });
-				console.log(res);
-			})
-
-		// Meteor.call("events.getid", data, (err, res) => {
-		// 		this.setState({
-		// 			id: res._id;
-		// 		});
-		// 	})
-		}
-	
-	
+			if (err) {
+				alert("There was error inserting check the console");
+				console.log(err);
+				return;
+			}
+			this.setState({
+				id: res
+			});
+			console.log(res);
+		});
+	}
 
 	render() {
 		// return <AutoForm schema={Schema} onSubmit={this.onSubmit.bind(this)} />;
 		return (
-		      <div className="Comment col-4">
-    <form
-                  className="form-signin"
-                  noValidate
-                  onSubmit={this.onSubmit1.bind(this)}
-                >
-                  <div className="form-label-group">
-                    <label htmlFor="name">Name</label>
+			<div className="Comment col-4">
+				<form
+					className="form-signin"
+					noValidate
+					onSubmit={this.onSubmit1.bind(this)}
+				>
+					<div className="form-label-group">
+						<label htmlFor="name">Name</label>
 
-                    <input
-                      id="name"
-                      type="text"
-                      ref={input => (this.eventname = input)}
-                    />
-                  </div>
-                  <div className="form-label-group">
-                    <label htmlFor="date">Date</label>
-                    <input
-                      id="date"
-                      type="date"
-                          ref={input => (this.eventdate = input)}
+						<input
+							id="name"
+							type="text"
+							ref={input => (this.eventname = input)}
+						/>
+					</div>
+					<div className="form-label-group">
+						<label htmlFor="date">Date</label>
+						<input
+							id="date"
+							type="date"
+							ref={input => (this.eventdate = input)}
+						/>
+					</div>
+					<div className="form-label-group">
+						<button
+							style={{
+								width: "150px",
+								borderRadius: "3px",
+								letterSpacing: "1.5px",
+								marginTop: "1rem"
+							}}
+							type="submit"
+							className="btn btn-lg btn-primary btn-block text-uppercase"
+						>
+							Submit
+						</button>
+					</div>
+				</form>
 
-                    />
-                  </div>
-                      <div className="form-label-group">
-                        <button
-                          style={{
-                            width: "150px",
-                            borderRadius: "3px",
-                            letterSpacing: "1.5px",
-                            marginTop: "1rem"
-                          }}
-                          type="submit"
-                          className="btn btn-lg btn-primary btn-block text-uppercase"
-                        >
-                          Submit
-                        </button>
-                      </div>
-                </form>
+				{this.state.id != "" ? (
+					<ListForm id={this.state.id} />
+				) : (
+					<div>sugma</div>
+				)}
 
-                      {this.state.id != "" ?  <ListForm id={this.state.id} /> : <div>sugma</div>}
 
-                    <form
-                  className="form-signin"
-                  noValidate
-                  onSubmit={this.onSubmit}
-                >
-                  <div className="form-label-group">
-                    <label htmlFor="name">Name</label>
-
-                    <input
-                      id="name"
-                      type="text"
-                                            ref={input => (this.name = input)}
-
-                    />
-                  </div>
-                  <div className="form-label-group">
-                    <label htmlFor="date">Quantity</label>
-                    <input
-                      id="quantity"
-                      type="quantity"
-                                            ref={input => (this.quantity = input)}
-
-                    />
-                  </div>
-                      <div className="form-label-group">
-                        <button
-                          style={{
-                            width: "150px",
-                            borderRadius: "3px",
-                            letterSpacing: "1.5px",
-                            marginTop: "1rem"
-                          }}
-                          type="submit"
-                          className="btn btn-lg btn-primary btn-block text-uppercase"
-                        >
-                          Submit
-                        </button>
-                      </div>
-                </form>
-      <br />
-      </div>
-      )
+				<br />
+			</div>
+		);
 	}
 }
 

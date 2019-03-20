@@ -10,7 +10,7 @@
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "axios": "^0.18.0",
-    "bcrypt": "^3.0.4",
+    "bcrypt": "^3.0.5",
     "classnames": "^2.2.6",
     "graphql": "^14.0.0",
     "history": "^4.7.2",

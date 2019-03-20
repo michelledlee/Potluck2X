@@ -9,80 +9,81 @@ import { Events } from "../api/events.js";
 import { Schema } from "./schema.js";
 
 export default class ListForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      list: ""
+      id: this.props.events.id,
+      // name: this.props.events.name,
+      // date: this.props.events.date,
+      // time: this.props.events.time,
+      // description: this.props.events.description,
+      // list: this.props.events.list,
+      // createdAt: this.props.events.createdAt,
+      // owner: this.props.events.owner
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
-    }
+  renderList() {
+    return this.state.list.map((l, i) => <List key={i++} list={l} />);
   }
-  
-  // renderList() {
-  //   return this.state.list.map((l, i) => <List key={i++} list={l} />);
-  // }
 
-  onClick(e) {
-    const list = {
-      name: this.state.name,
-      quantity: this.state.quantity,
-    };
-
-    //meteor call to insert
+  onSubmit(event) {
+    event.preventDefault();
+    let iteminfo = this.item.value + this.quantity.value;
+    let data = { id: this.id.value, iteminfo: iteminfo };
+    Meteor.call("items.insert", data, (err, res) => {
+      if (err) {
+        alert("There was error inserting check the console");
+        console.log(err);
+        return;
+      }
+    });
   }
 
   render() {
     return (
       <div className="Comment col-4">
-    <form
-                  className="form-signin"
-                  noValidate
-                  onSubmit={this.onSubmit}
-                >
-                  <div className="form-label-group">
-                    <label htmlFor="name">Name</label>
+        <form
+          className="form-signin"
+          noValidate
+          onSubmit={this.onSubmit}
+        >
+          <div className="form-label-group">
+            <label htmlFor="item">Item</label>
 
-                    <input
-                      onChange={this.onChange}
-                      value={this.state.name}
-                      id="name"
-                      type="text"
-                    />
-                  </div>
-                  <div className="form-label-group">
-                    <label htmlFor="date">Quantity</label>
-                    <input
-                      onChange={this.onChange}
-                      value={this.state.quantity}
-                      id="quantity"
-                      type="quantity"
-                    />
-                  </div>
-                      <div className="form-label-group">
-                        <button
-                          style={{
-                            width: "150px",
-                            borderRadius: "3px",
-                            letterSpacing: "1.5px",
-                            marginTop: "1rem"
-                          }}
-                          type="submit"
-                          className="btn btn-lg btn-primary btn-block text-uppercase"
-                        >
-                          Submit
-                        </button>
-                      </div>
-                </form>
-      <br />
+            <input
+              id="item"
+              type="text"
+              ref={input => (this.item = input)}
+            />
+          </div>
+          <div className="form-label-group">
+            <label htmlFor="date">Quantity</label>
+            <input
+              id="quantity"
+              type="quantity"
+              ref={input => (this.quantity = input)}
+            />
+          </div>
+          <div className="form-label-group">
+            <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+              }}
+              type="submit"
+              className="btn btn-lg btn-primary btn-block text-uppercase"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        <br />
       </div>
-      );
+    );
   }
 }
 
