@@ -43,8 +43,14 @@ Meteor.methods({
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
+    console.log(event);
+    let eventdocument = Events.findOne({ _id: event.objid });
+    console.log(eventdocument);
+    let eventlist = eventdocument.list;
+    let neweventlist = eventlist;
+    neweventlist.push(event.iteminfo);
 
-    Events.update({ _id: event.id }, 
-      { $addToSet: {list: event.iteminfo} });
+    Events.update({ _id: event.objid }, 
+      { $set: {list: neweventlist} });
   }
 });
