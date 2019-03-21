@@ -73,8 +73,8 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized");
     }
     // get the event the user is trying to RSVP to
-    console.log(event);
-    let eventdocument = Events.findOne({ _id: event.objid });
+    // console.log(event);
+    let eventdocument = Events.findOne({ _id: event.theid });
     console.log(eventdocument);
 
     // get the list of items from the event
@@ -83,24 +83,34 @@ Meteor.methods({
 
     // iterate through the list and find the matching item and quantity number
     for (let i = 0; i < neweventlist.length; i++) {
+      console.log("in the loop");
       // split the string to get the itemname and quantitynumber
       let itemname = neweventlist[i].split(" ")[0];
+      console.log("i item:" + itemname);
       let quantitynumber = neweventlist[i].split(" ")[1];
+      console.log("quantity: " + quantitynumber);
       // find the matching item in the list
-      if (itemname === event.itemname) {
+      console.log("event.itemname: " + event.itemname);
+      let currentitem = event.itemname.split(" ")[0];
+      console.log("currentitem: " + currentitem);
+      if (itemname === currentitem) {
         // update the quantity
         quantitynumber = quantitynumber - event.itemquantity;
-        // remove the original item from the list since we have to add the updated list
-        delete neweventlist[i];
+        console.log("updated quantity: " + quantitynumber);
         // create the new string
-        let newitem = itemname + quantitynumber;
-        // reduce the amount of items needed and add this updated part to the array
-        neweventlist.push(newitem);
+        let newitem = itemname + " " + quantitynumber;
+        // update the list
+        neweventlist[i] = newitem;
+        console.log(neweventlist);
+
+      Events.update(
+        { _id: event.theid }, 
+        { $set: {list: neweventlist} });
       }
+
+      break;
 
     }
 
-    Events.update({ _id: event.objid }, 
-      { $set: {list: neweventlist} });
   }
 });

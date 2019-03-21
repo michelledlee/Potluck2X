@@ -18,10 +18,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 const HomeComponent = () => {
   return (
     <div>
-      <h1>Meteor chat</h1>
-
-      {Meteor.user() ? <Chat /> : <div>Please log in</div>}
-
       <h1>Events</h1>
       <BrowseEvents />
       <EventForm />

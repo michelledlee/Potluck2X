@@ -67,7 +67,7 @@ class EventForm extends Component {
 						/>
 					</div>
 					<div className="form-label-group">
-						<label htmlFor="date">Description</label>
+						<label htmlFor="description">Description</label>
 						<input
 							id="description"
 							type="text"

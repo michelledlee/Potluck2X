@@ -6,18 +6,20 @@ import { withTracker } from "meteor/react-meteor-data";
 
 import { Events } from "../api/events.js";
 
-
 export default class RSVPwItems extends Component {
   constructor(props) {
     super(props);
+    this.selecteditem = "";
+    this.amount = 0;
     this.state = {
-      list: this.props.thelist
+      list: this.props.theevent.list,
+      objid: this.props.theevent._id
     };
   }
 
   onSubmit() {
     event.preventDefault();
-    let data = { name: this.itemname.value, date: this.itemquantity.value };
+    let data = { list: this.state.list, itemname: this.selecteditem.value, itemquantity: this.amount.value, theid: this.state.objid };
     Meteor.call("events.rsvp", data, (err, res) => {
       if (err) {
         alert("There was error inserting check the console");
@@ -29,39 +31,54 @@ export default class RSVPwItems extends Component {
   }
 
   renderTheSelection() {
-    return this.state.list.map((eve, i) => <option value={this.state.list[i]}>{this.state.list[i]}</option>);
+    return this.state.list.map((eve, i) => (
+      <option key={this.state.list[i]} value={this.state.list[i]}>
+        {this.state.list[i]}
+      </option>
+    ));
   }
-
-  // makeSelectBox() {
-  //   console.log(this.state.list.length);
-  //   for (let i = 0; i < this.state.list.length; i++) {
-  //     console.log(this.state.list[i]);
-  //     <option key={i+=2} value={this.state.list[i]}>{this.state.list[i]}</option>
-  //   }
-  // }
 
   render() {
     return (
       <div className="form-group">
-      <label htmlFor="optionsselect">Bringing Item:</label>
-      <select className="form-control" id="optionsselect"> 
-      {/*this.makeSelectBox()*/};
-      {this.renderTheSelection()}
-      </select>
+        <form
+          className="form-signin"
+          noValidate
+          onSubmit={this.onSubmit.bind(this)}
+        >
+          <label htmlFor="optionsselect">Bringing Item:</label>
+          <select 
+            className="form-control" 
+            id="optionsselect"
+            ref={input => (this.selecteditem = input)}>
+            {this.renderTheSelection()}
+          </select>
+          <label htmlFor="amount">Amount</label>
+          <input
+            id="amount"
+            type="number"
+            ref={input => (this.amount = input)}
+          />
+            <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+              }}
+              type="submit"
+              className="btn btn-lg btn-primary btn-block text-uppercase"
+            >
+              I'm In!
+            </button>
+        </form>
       </div>
-      );
+    );
   }
 }
 
 RSVPwItems.propTypes = {
-  thelist: PropTypes.arrayOf(PropTypes.string).isRequired
-};
+  // thelist: PropTypes.arrayOf(PropTypes.string).isRequired
+    theevent: PropTypes.object.isRequired
 
-// export default withTracker(() => {
-//   const handle = Meteor.subscribe("events");
-//   return {
-//     events: Events.find({}).fetch(),
-//     user: Meteor.user(),
-//     ready : handle.ready()
-//   };
-// })(RSVPwItems);
+};

@@ -46,8 +46,10 @@ class BrowseEvents extends Component {
     return this.props.events.map((m, j) =>
 
       <div>
-      <div className="card" key={j++}>{m.owner} : {m.name}</div>
-      <RSVPwItems key={j+=3} thelist={m.list}/>
+      {m.owner} : {m.name}
+      {/*<RSVPwItems key={m.list[j]} thelist={m.list}/>*/}
+            <RSVPwItems key={m.list[j]} theevent={m}/>
+
       </div>
       );
   }
@@ -71,7 +73,6 @@ class BrowseEvents extends Component {
       <p>Look at all these events:</p>
 
       <div className="row">{this.makeatherender()}</div>
-
 
       </div>
       </div>
