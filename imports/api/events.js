@@ -106,9 +106,10 @@ Meteor.methods({
       Events.update(
         { _id: event.theid }, 
         { $set: {list: neweventlist} });
+            break;
+
       }
 
-      break;
 
     }
 

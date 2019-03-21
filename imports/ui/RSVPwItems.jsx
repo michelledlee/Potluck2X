@@ -26,6 +26,8 @@ export default class RSVPwItems extends Component {
         console.log(err);
         return;
       }
+      this.selecteditem = "";
+      this.amount = "";
       console.log(res);
     });
   }
@@ -57,6 +59,7 @@ export default class RSVPwItems extends Component {
           <input
             id="amount"
             type="number"
+            min="0"
             ref={input => (this.amount = input)}
           />
             <button
