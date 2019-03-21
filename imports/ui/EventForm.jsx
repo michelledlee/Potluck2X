@@ -28,7 +28,7 @@ class EventForm extends Component {
 		let data = { name: this.eventname.value, date: this.eventdate.value, description: this.eventdescription.value, list: this.state.list };
 		Meteor.call("events.insert", data, (err, res) => {
 			if (err) {
-				alert("There was error inserting check the console");
+				alert("There was error inserting, check the console");
 				console.log(err);
 				return;
 			}
@@ -43,7 +43,12 @@ class EventForm extends Component {
 	render() {
 		// return <AutoForm schema={Schema} onSubmit={this.onSubmit.bind(this)} />;
 		return (
-			<div className="Comment col-4">
+			<div style={{ height: "75vh" }} className="container valign-wrapper">
+        		<div className="row">
+         			 <div className="col s12 center-align" style={{ padding: "100px" }}>
+         		<div className="card">
+			    <center>
+			    <div className="makeForm col-8">
 				<form
 					className="form-signin"
 					noValidate
@@ -67,7 +72,7 @@ class EventForm extends Component {
 						/>
 					</div>
 					<div className="form-label-group">
-						<label htmlFor="description">Description</label>
+						<label htmlFor="date">Description</label>
 						<input
 							id="description"
 							type="text"
@@ -75,6 +80,9 @@ class EventForm extends Component {
 						/>
 					</div>
 					<div className="form-label-group">
+						{this.state.id != "" ? (
+							<ListForm iddqd={this.state.id} />
+						) : (
 						<button
 							style={{
 								width: "150px",
@@ -87,17 +95,16 @@ class EventForm extends Component {
 						>
 							Submit
 						</button>
+						)}
+						<div className="register">Register an event, then add a list of items and their quantities you'd like guests to bring!</div>
 					</div>
 				</form>
-
-				{this.state.id != "" ? (
-					<ListForm iddqd={this.state.id} />
-				) : (
-					<div>sugma</div>
-				)}
-
-
+				</div>
+				</center>
+				</div>
 				<br />
+			</div>
+			</div>
 			</div>
 		);
 	}
