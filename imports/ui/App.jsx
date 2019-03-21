@@ -23,9 +23,16 @@ const HomeComponent = () => {
             <div className="container text-center">
               <div className="row">
                 <div className="col-lg-10 mx-auto">
-                  <h2>Upcoming Events</h2>
+                  <div className="travel-topper">
+                  <h1>Upcoming Events</h1>
+                  </div>
                   <div className="lead mb-5">
                         <BrowseEvents />
+                  </div>
+                  <div className="travel-topper">
+                  <h1>Register an Event</h1>
+                  </div>
+                  <div className="lead mb-5">
                         <EventForm />
                   </div>
                 </div>
@@ -59,9 +66,12 @@ const AboutComponent = () =>
             <h2>About</h2>
             <p className="lead mb-5">PotluckPotluck is a really cool app that does a bunch of nifty shit!</p>
           </div>
+          <div className="grill-topper d-flex">
+          </div>
         </div>
       </div>
     </section>
+    <p className="text-muted small mb-0">Copyright &copy; POTLUCKPOTLUCK 2019</p>
   </div>;
 
 const NotFoundPage = () =>

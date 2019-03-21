@@ -46,7 +46,7 @@ class EventForm extends Component {
 			<div style={{ height: "75vh" }} className="container valign-wrapper">
         		<div className="row">
          			 <div className="col s12 center-align" style={{ padding: "100px" }}>
-			    <h2>Register a New Event</h2>
+         		<div className="card">
 			    <center>
 			    <div className="makeForm col-8">
 				<form
@@ -101,6 +101,7 @@ class EventForm extends Component {
 				</form>
 				</div>
 				</center>
+				</div>
 				<br />
 			</div>
 			</div>
