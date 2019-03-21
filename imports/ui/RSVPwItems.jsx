@@ -57,6 +57,7 @@ export default class RSVPwItems extends Component {
           <input
             id="amount"
             type="number"
+            min="0"
             ref={input => (this.amount = input)}
           />
           <div className="make-center">
