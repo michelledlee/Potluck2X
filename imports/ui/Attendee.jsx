@@ -12,7 +12,7 @@ export default class Attendee extends Component {
 
   render() {
     return (
-      <li><span>{this.props.attendee.split("@")[0]}</span></li>
+      <li><span>{this.props.attendee.split(" ")[0]}</span></li>
       );
   }
 }

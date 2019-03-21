@@ -6,7 +6,7 @@ import { withTracker } from "meteor/react-meteor-data";
 
 import { Events } from "../api/events.js";
 import EventRSVP from "./EventRSVP.jsx";
-
+import RSVPwItems from "./RSVPwItems";
 
 class BrowseEvents extends Component {
   constructor(props) {
@@ -43,23 +43,41 @@ class BrowseEvents extends Component {
   }
 
   makeatherender() {
-    return this.props.events.map(m =>
-      <div className="card" key={m._id}>{m.owner} : {m.name}</div>);
+    return this.props.events.map((m, j) =>
+
+      <div>
+      <div className="card" key={j++}>{m.owner} : {m.name}</div>
+      <RSVPwItems key={j+=3} thelist={m.list}/>
+      </div>
+      );
   }
+
+  // optionsListGo() {
+  //   let options = m.list;
+  //   let selectList = document.getElementById(optionsselect);
+  //   let count = m.list.length;
+  //     for (let i = 0; i < count; i++) {
+  //           let option = options[i];
+  //           selectList.options.add(new Option(m.list[i].split(" ")[0]));
+  //       }
+  // }
+//
 
   render() {
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
-        <div className="row">
-          <div className="col s12 center-align" style={{ padding: "100px" }}>
-            <p>Look at all these events:</p>
+      <div className="row">
+      <div className="col s12 center-align" style={{ padding: "100px" }}>
+      <p>Look at all these events:</p>
 
-            <div className="row">{this.makeatherender()}</div>
+      <div className="row">{this.makeatherender()}</div>
 
-          </div>
-        </div>
+
       </div>
-    );
+      </div>
+      </div>
+
+      );
   }
 }
 
