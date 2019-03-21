@@ -86,7 +86,7 @@ export default class ListForm extends Component {
 
   render() {
     return (
-      <div className="Comment col-4">
+      <div>
         <form
           className="form-signin"
           onKeyPress={this.onKey.bind(this)}

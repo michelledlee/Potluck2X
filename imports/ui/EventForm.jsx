@@ -28,7 +28,7 @@ class EventForm extends Component {
 		let data = { name: this.eventname.value, date: this.eventdate.value, description: this.eventdescription.value, list: this.state.list };
 		Meteor.call("events.insert", data, (err, res) => {
 			if (err) {
-				alert("There was error inserting check the console");
+				alert("There was error inserting, check the console");
 				console.log(err);
 				return;
 			}
