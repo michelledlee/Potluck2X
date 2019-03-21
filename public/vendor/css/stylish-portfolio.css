@@ -19,8 +19,8 @@ body {
 }
 
 .content-section {
-  padding-top: 7.5rem;
-  padding-bottom: 7.5rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
 }
 
 .content-section-heading h2 {
@@ -39,6 +39,7 @@ h4,
 h5,
 h6 {
   font-weight: 700;
+  color: black;
 }
 
 .text-faded {
@@ -93,8 +94,8 @@ h6 {
   height: auto;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.1))), url("../img/bg-masthead.jpg");
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../img/bg-masthead.jpg");
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.1))), url("../img/coffee.jpg");
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../img/coffee.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -112,6 +113,7 @@ h6 {
   }
   .masthead h1 {
     font-size: 5.5rem;
+    color: black;
   }
 }
 
@@ -325,22 +327,22 @@ footer.footer .social-link:hover {
 }
 
 a {
-  color: #1D809F;
+  color: #675f5f;
 }
 
 a:hover, a:focus, a:active {
-  color: #155d74;
+  color: #8f8585;
 }
 
 .btn-primary {
-  background-color: #1D809F !important;
-  border-color: #1D809F !important;
+  background-color: #675f5f !important;
+  border-color: #675f5f !important;
   color: #fff !important;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background-color: #155d74 !important;
-  border-color: #155d74 !important;
+  background-color: #8f8585 !important;
+  border-color: #8f8585 !important;
 }
 
 .btn-secondary {
@@ -362,6 +364,7 @@ a:hover, a:focus, a:active {
   -webkit-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
   font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .bg-primary {
