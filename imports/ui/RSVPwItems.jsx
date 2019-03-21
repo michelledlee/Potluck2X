@@ -46,7 +46,7 @@ export default class RSVPwItems extends Component {
           noValidate
           onSubmit={this.onSubmit.bind(this)}
         >
-          <label htmlFor="optionsselect">Bringing Item:</label>
+          <label htmlFor="optionsselect">Items to Bring:</label>
           <select 
             className="form-control" 
             id="optionsselect"
@@ -59,6 +59,7 @@ export default class RSVPwItems extends Component {
             type="number"
             ref={input => (this.amount = input)}
           />
+          <div className="make-center">
             <button
               style={{
                 width: "150px",
@@ -71,6 +72,7 @@ export default class RSVPwItems extends Component {
             >
               I'm In!
             </button>
+            </div>
         </form>
       </div>
     );

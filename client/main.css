@@ -11,3 +11,9 @@
     border-radius: .25rem!important;
     padding: -.25rem!important;
 }
+
+.make-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

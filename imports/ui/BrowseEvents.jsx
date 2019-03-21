@@ -45,8 +45,11 @@ class BrowseEvents extends Component {
   makeatherender() {
     return this.props.events.map((m, j) =>
 
-      <div>
-      {m.owner} : {m.name}
+      <div className="card col-4" key={m._id}>
+      <span><strong>Host:</strong> {m.owner}</span>
+      <span><strong>Name:</strong> {m.name}</span>
+      <span><strong>Date:</strong> {m.date}</span>
+      <span><strong>Description:</strong> {m.description}</span>
       {/*<RSVPwItems key={m.list[j]} thelist={m.list}/>*/}
             <RSVPwItems key={m.list[j]} theevent={m}/>
 
@@ -67,9 +70,9 @@ class BrowseEvents extends Component {
 
   render() {
     return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
+      <div className="container valign-wrapper">
       <div className="row">
-      <div className="col s12 center-align" style={{ padding: "100px" }}>
+      <div className="container center-align" style={{ padding: "50px" }}>
       <p>Look at all these events:</p>
 
       <div className="row">{this.makeatherender()}</div>
