@@ -29,16 +29,16 @@ export default class RSVPwItems extends Component {
   }
 
   renderTheSelection() {
-    return this.state.list.map((eve, i) => <option key={i++} value={this.state.list[i]}>{this.state.list[i]}</option>);
+    return this.state.list.map((eve, i) => <option value={this.state.list[i]}>{this.state.list[i]}</option>);
   }
 
-  makeSelectBox() {
-    console.log(this.state.list.length);
-    for (let i = 0; i < this.state.list.length; i++) {
-      console.log(this.state.list[i]);
-      <option key={i+=2} value={this.state.list[i]}>{this.state.list[i]}</option>
-    }
-  }
+  // makeSelectBox() {
+  //   console.log(this.state.list.length);
+  //   for (let i = 0; i < this.state.list.length; i++) {
+  //     console.log(this.state.list[i]);
+  //     <option key={i+=2} value={this.state.list[i]}>{this.state.list[i]}</option>
+  //   }
+  // }
 
   render() {
     return (

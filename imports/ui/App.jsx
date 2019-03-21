@@ -24,7 +24,6 @@ const HomeComponent = () => {
 
       <h1>Events</h1>
       <BrowseEvents />
-      <Event />
       <EventForm />
 
     </div>
