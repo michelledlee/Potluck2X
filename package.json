@@ -25,7 +25,8 @@
     "redux": "^4.0.1",
     "simpl-schema": "^1.0.0",
     "uniforms": "^1.31.1",
-    "uniforms-semantic": "^1.31.1"
+    "uniforms-semantic": "^1.31.1",
+    "uniqid": "^5.0.3"
   },
   "meteor": {
     "mainModule": {

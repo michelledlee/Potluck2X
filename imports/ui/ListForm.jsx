@@ -12,8 +12,13 @@ export default class ListForm extends Component {
   constructor(props) {
     super(props);
 
+    this.itemname = "";
+    this.quantityname ="";
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onKey = this.onKey.bind(this);
+    this.iddata = this.props.iddqd;
     this.state = {
-      id: this.props.id,
+      idd: this.props.iddqd,
       item: "",
       quantity: "",
       iteminfo: ""
@@ -27,18 +32,22 @@ export default class ListForm extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log(this.props);
+    console.log(this.state.idd);
+    console.log(this.state.iddata);
+  }
+
   renderList() {
     return this.state.list.map((l, i) => <List key={i++} list={l} />);
   }
 
   onSubmit(event) {
     event.preventDefault();
-    console.log(this.itemname.value);
-    console.log(this.quantityname.value);
     let iteminfo = this.itemname.value + this.quantityname.value;
         console.log(iteminfo);
 
-    let data = { objid: this.state.id, iteminfo: iteminfo };
+    let data = { objid: this.iddata.value, iteminfo: iteminfo };
     Meteor.call("items.insert", data, (err, res) => {
       if (err) {
         alert("There was error inserting check the console");
@@ -48,13 +57,39 @@ export default class ListForm extends Component {
     });
   }
 
+  onKey(evt) {
+    if (evt.key === "Enter") {
+
+    event.preventDefault();
+    let iteminfo = this.itemname.value + " " + this.quantityname.value;
+    console.log(iteminfo);
+
+    let data = { objid: this.state.idd, iteminfo: iteminfo };
+    Meteor.call("items.insert", data, (err, res) => {
+      if (err) {
+        alert("There was error inserting check the console");
+        console.log(err);
+        return;
+      } else {
+        console.log("Item added");
+         console.log("Message inserted", res);
+          this.setState({
+            itemname: ""
+          });
+          this.setState({
+            quantityname: ""
+          });
+      }
+    });
+    }
+  }
+
   render() {
     return (
       <div className="Comment col-4">
         <form
           className="form-signin"
-          noValidate
-          onSubmit={this.onSubmit}
+          onKeyPress={this.onKey.bind(this)}
         >
           <div className="form-label-group">
             <label htmlFor="item">Item</label>
@@ -74,18 +109,7 @@ export default class ListForm extends Component {
             />
           </div>
           <div className="form-label-group">
-            <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem"
-              }}
-              type="submit"
-              className="btn btn-lg btn-primary btn-block text-uppercase"
-            >
-              Submit
-            </button>
+
 
           </div>
         </form>

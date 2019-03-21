@@ -17,7 +17,7 @@ class EventForm extends Component {
 			date: "",
 			time: "",
 			description: "",
-			list: "",
+			list: [],
 			createdAt: "",
 			owner: ""
 		};
@@ -25,7 +25,7 @@ class EventForm extends Component {
 
 	onSubmit1(event) {
 		event.preventDefault();
-		let data = { name: this.eventname.value, date: this.eventdate.value };
+		let data = { name: this.eventname.value, date: this.eventdate.value, description: this.eventdescription.value, list: this.state.list };
 		Meteor.call("events.insert", data, (err, res) => {
 			if (err) {
 				alert("There was error inserting check the console");
@@ -64,6 +64,14 @@ class EventForm extends Component {
 							id="date"
 							type="date"
 							ref={input => (this.eventdate = input)}
+						/>
+					</div>
+					<div className="form-label-group">
+						<label htmlFor="description">Description</label>
+						<input
+							id="description"
+							type="text"
+							ref={input => (this.eventdescription = input)}
 						/>
 					</div>
 					<div className="form-label-group">

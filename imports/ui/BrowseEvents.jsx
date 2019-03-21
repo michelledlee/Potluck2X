@@ -6,7 +6,7 @@ import { withTracker } from "meteor/react-meteor-data";
 
 import { Events } from "../api/events.js";
 import EventRSVP from "./EventRSVP.jsx";
-
+import RSVPwItems from "./RSVPwItems";
 
 class BrowseEvents extends Component {
   constructor(props) {
@@ -16,20 +16,24 @@ class BrowseEvents extends Component {
     };
   }
 
-  // getAllEvents() {
-  //   fetch("/getallevents")
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log("got all events!", data);
-  //       this.setState({
-  //         events: data
-  //       });
-  //     });
-  // }
+  getAllEvents() {
+    event.preventDefault();
+    Meteor.call("events.get", (err, res) => {
+      if (err) {
+        alert("There was an error getting");
+        console.log(err);
+        return;
+      }
+      this.setState({
+        events: res
+      });
+      console.log(res);
+    });
+  }
 
-  // componentDidMount() {
-  //   this.getAllEvents();
-  // }
+  componentDidMount() {
+    this.getAllEvents();
+  }
 
   renderEvents() {
     return this.state.events.map((eve, i) => <EventRSVP key={i++} event={eve} />);
@@ -38,25 +42,49 @@ class BrowseEvents extends Component {
     //   <div className="card" key={m._id}>{m.owner} : {m.event}</div>);
   }
 
+  makeatherender() {
+    return this.props.events.map((m, j) =>
+
+      <div>
+      {m.owner} : {m.name}
+      {/*<RSVPwItems key={m.list[j]} thelist={m.list}/>*/}
+            <RSVPwItems key={m.list[j]} theevent={m}/>
+
+      </div>
+      );
+  }
+
+  // optionsListGo() {
+  //   let options = m.list;
+  //   let selectList = document.getElementById(optionsselect);
+  //   let count = m.list.length;
+  //     for (let i = 0; i < count; i++) {
+  //           let option = options[i];
+  //           selectList.options.add(new Option(m.list[i].split(" ")[0]));
+  //       }
+  // }
+//
+
   render() {
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
-        <div className="row">
-          <div className="col s12 center-align" style={{ padding: "100px" }}>
-            <p>Look at all these events:</p>
+      <div className="row">
+      <div className="col s12 center-align" style={{ padding: "100px" }}>
+      <p>Look at all these events:</p>
 
-            <div className="row">{this.renderEvents()}</div>
+      <div className="row">{this.makeatherender()}</div>
 
-          </div>
-        </div>
       </div>
-    );
+      </div>
+      </div>
+
+      );
   }
 }
 
-// BrowseEvents.propTypes = {
-//   auth: PropTypes.object.isRequired
-// };
+BrowseEvents.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 // const mapStateToProps = state => ({
 //   auth: state.auth
