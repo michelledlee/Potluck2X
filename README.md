@@ -32,7 +32,7 @@ Chrome
 
 ## How to Install/Use
 1. Clone the repository
-2. 
+2. Select one of the following: 
 + OSX/Linux: install meteor via `curl https://install.meteor.com/ | sh` 
 + Windows: install meteor via (https://www.meteor.com/install)
 2. Navigate to the client directory and execute the following command:
