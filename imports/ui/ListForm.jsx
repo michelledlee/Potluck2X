@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import { AutoForm } from "uniforms-semantic";
 import { withTracker } from "meteor/react-meteor-data";
 
 import Attendee from "./Attendee.jsx";
 import { Events } from "../api/events.js";
-import { Schema } from "./schema.js";
 
 export default class ListForm extends Component {
   constructor(props) {
@@ -61,7 +59,7 @@ export default class ListForm extends Component {
     if (evt.key === "Enter") {
 
     event.preventDefault();
-    let iteminfo = this.itemname.value + " " + this.quantityname.value;
+    let iteminfo = this.itemname.value + "-" + this.quantityname.value;
     console.log(iteminfo);
 
     let data = { objid: this.state.idd, iteminfo: iteminfo };
@@ -72,13 +70,9 @@ export default class ListForm extends Component {
         return;
       } else {
         console.log("Item added");
-         console.log("Message inserted", res);
-          this.setState({
-            itemname: ""
-          });
-          this.setState({
-            quantityname: ""
-          });
+        console.log("Message inserted", res);
+        this.itemname.value = "";
+        this.quantityname.value ="";
       }
     });
     }

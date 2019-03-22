@@ -17,8 +17,7 @@ class BrowseEvents extends Component {
   }
 
   getAllEvents() {
-    event.preventDefault();
-    Meteor.call("events.get", (err, res) => {
+    Meteor.call("events.get",null, (err, res) => {
       if (err) {
         alert("There was an error getting");
         console.log(err);
@@ -31,18 +30,19 @@ class BrowseEvents extends Component {
     });
   }
 
-  componentDidMount() {
-    this.getAllEvents();
-  }
+  // componentDidMount() {
+  //   this.getAllEvents();
+  // }
 
-  renderEvents() {
-    return this.state.events.map((eve, i) => <EventRSVP key={i++} event={eve} />);
+  // renderEvents() {
+  //   return this.state.events.map((eve, i) => <EventRSVP key={i++} event={eve} />);
 
-    // return this.props.events.map(m =>
-    //   <div className="card" key={m._id}>{m.owner} : {m.event}</div>);
-  }
+  //   // return this.props.events.map(m =>
+  //   //   <div className="card" key={m._id}>{m.owner} : {m.event}</div>);
+  // }
 
   makeatherender() {
+    debugger;
     return this.props.events.map((m, j) =>
 
       <div className="card col-4" key={m._id}>
@@ -50,8 +50,10 @@ class BrowseEvents extends Component {
       <span><strong>Name:</strong> {m.name}</span>
       <span><strong>Date:</strong> {m.date}</span>
       <span><strong>Description:</strong> {m.description}</span>
-      {/*<RSVPwItems key={m.list[j]} thelist={m.list}/>*/}
-            <RSVPwItems key={m.list[j]} theevent={m}/>
+      {/*<RSVPwItems key={m.list[j]} thelist={m.list}/>      
+*/
+    }
+     <RSVPwItems key={m.list[j]} theevent={m}/>
 
       </div>
       );

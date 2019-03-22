@@ -33,7 +33,7 @@ const HomeComponent = () => {
                   <h1>Register an Event</h1>
                   </div>
                   <div className="lead mb-5">
-                        <EventForm />
+                    <EventForm />
                   </div>
                 </div>
               </div>

@@ -6,6 +6,7 @@ export const Events = new Mongo.Collection("events");
 
 if (Meteor.isServer) {
   Meteor.publish("events", function eventsPublish() {
+    try {
     return Events.find(
       {},
       {
@@ -15,16 +16,21 @@ if (Meteor.isServer) {
         }
       }
     );
+    } catch (e) {
+  console.log(e);
+}
   });
+
 }
 
 Meteor.methods({
   "events.insert"(event) {
+        console.log("events.isert");
+
     // Make sure the user is logged in before inserting a task
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
-
     return Events.insert({
       name: event.name,
       date: event.date,
@@ -39,6 +45,8 @@ Meteor.methods({
 
 Meteor.methods({
   "items.insert"(event) {
+        console.log("items.isert");
+
     // Make sure the user is logged in before inserting a task
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
@@ -48,6 +56,33 @@ Meteor.methods({
     console.log(eventdocument);
     let eventlist = eventdocument.list;
     let neweventlist = eventlist;
+
+    // get variables for the item that we are trying to insert
+    let insertitem = event.iteminfo.split("-")[0];
+
+    // check if the item is already in the list
+    for (let i = 0; i < eventlist.length; i++) {
+      console.log("in the loop");
+
+      // split the string to get the itemname and quantitynumber
+      let itemname = neweventlist[i].split("-")[0];
+      console.log("i item:" + itemname);
+      let quantitynumber = neweventlist[i].split("-")[1];
+      console.log("quantity: " + quantitynumber);
+
+      // find the matching item in the list
+      console.log("event.itemname: " + event.itemname);
+      let currentitem = event.iteminfo.split("-")[0];
+      console.log("currentitem: " + currentitem);
+
+      if (itemname === currentitem) {
+        //  already in the list, do not add
+        console.log("iTeM aLrEaDy AdDeD");
+        return;
+
+      }
+    }
+
     neweventlist.push(event.iteminfo);
 
     Events.update({ _id: event.objid }, 
@@ -57,17 +92,22 @@ Meteor.methods({
 
 Meteor.methods({
   "events.get"() {
+        console.log("events.get");
+
     // Make sure the user is logged in before inserting a task
     if (!this.userId) {
+      console.log("not authorized mf");
       throw new Meteor.Error("not-authorized");
     }
 
-    return Events.find({});
+    try { return Events.find({}); } catch(e) {console.log(e)}
   }
 });
 
 Meteor.methods({
   "events.rsvp"(event) {
+        console.log("events.rsvp");
+
     // Make sure the user is logged in before inserting a task
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
@@ -84,21 +124,24 @@ Meteor.methods({
     // iterate through the list and find the matching item and quantity number
     for (let i = 0; i < neweventlist.length; i++) {
       console.log("in the loop");
+
       // split the string to get the itemname and quantitynumber
-      let itemname = neweventlist[i].split(" ")[0];
+      let itemname = neweventlist[i].split("-")[0];
       console.log("i item:" + itemname);
-      let quantitynumber = neweventlist[i].split(" ")[1];
+      let quantitynumber = neweventlist[i].split("-")[1];
       console.log("quantity: " + quantitynumber);
+
       // find the matching item in the list
       console.log("event.itemname: " + event.itemname);
-      let currentitem = event.itemname.split(" ")[0];
+      let currentitem = event.itemname.split("-")[0];
       console.log("currentitem: " + currentitem);
+
       if (itemname === currentitem) {
         // update the quantity
         quantitynumber = quantitynumber - event.itemquantity;
         console.log("updated quantity: " + quantitynumber);
         // create the new string
-        let newitem = itemname + " " + quantitynumber;
+        let newitem = itemname + "-" + quantitynumber;
         // update the list
         neweventlist[i] = newitem;
         console.log(neweventlist);
@@ -106,12 +149,10 @@ Meteor.methods({
       Events.update(
         { _id: event.theid }, 
         { $set: {list: neweventlist} });
-            break;
+      
+      break;
 
       }
-
-
     }
-
   }
 });

@@ -18,7 +18,7 @@ export default class RSVPwItems extends Component {
   }
 
   onSubmit() {
-    event.preventDefault();
+    // event.preventDefault();
     let data = { list: this.state.list, itemname: this.selecteditem.value, itemquantity: this.amount.value, theid: this.state.objid };
     Meteor.call("events.rsvp", data, (err, res) => {
       if (err) {

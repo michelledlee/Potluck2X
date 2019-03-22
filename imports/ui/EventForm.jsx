@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import { AutoForm } from "uniforms-semantic";
 import { withTracker } from "meteor/react-meteor-data";
 import { Events } from "../api/events.js";
-import { Schema } from "./schema.js";
 import  ListForm  from "./ListForm.jsx";
 
 class EventForm extends Component {
@@ -35,13 +33,12 @@ class EventForm extends Component {
 			this.setState({
 				id: res
 			});
-			console.log(this.state.id)
+			console.log(this.state.id);
 			console.log(res);
 		});
 	}
 
 	render() {
-		// return <AutoForm schema={Schema} onSubmit={this.onSubmit.bind(this)} />;
 		return (
 			<div style={{ height: "75vh" }} className="container valign-wrapper">
         		<div className="row">
@@ -109,12 +106,6 @@ class EventForm extends Component {
 		);
 	}
 }
-
-// EventForm.propTypes = {
-// 	name: PropTypes.arrayOf(PropTypes.object).isRequired,
-// 	name: PropTypes.arrayOf(PropTypes.object).isRequired
-
-// };
 
 export default withTracker(() => {
 	const handle = Meteor.subscribe("events");
