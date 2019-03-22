@@ -37,7 +37,7 @@ const HomeComponent = () => {
           <div className="container text-center my-auto">
             <h1 className="mb-1">Potluck Potluck</h1>
             <h3 className="mb-5">
-              <em>it\'s a potluck of potlucks!</em>
+              <em>its a potluck of potlucks!</em>
             </h3>
             <Link
               to="/about"
@@ -66,7 +66,7 @@ const AboutComponent = () => (
         <div className="row">
           <div className="col-lg-10 mx-auto">
             <h2>About</h2>
-            <p className="lead mb-5">Tired of inviting 20 people to your party, only to find no one's brought bananas? PotluckPotluck is here to help! Once you register for an account, you'll be able to create events for anyone to attend, and list all the items you need guests to bring to get your party started! Your guests can sign up for your event with the number of each item they're bringing. Never go bananaless again!</p>
+            <p className="lead mb-5">Tired of inviting 20 people to your party, only to find no ones brought bananas? PotluckPotluck is here to help! Once you register for an account, youll be able to create events for anyone to attend, and list all the items you need guests to bring to get your party started! Your guests can sign up for your event with the number of each item theyre bringing. Never go bananaless again!</p>
           </div>
           <div className="grill-topper d-flex" />
         </div>

@@ -47,66 +47,66 @@ class EventForm extends Component {
     return (
       <div
         style={{ height: "75vh" }}
-			className="container valign-wrapper"
-			>
-			<div className="row">
-			<div
-			className="col s12 center-align"
-			style={{ padding: "100px" }}
-			>
-			<div className="card">
-			<center>
-			<div className="makeForm col-8">
-			<form
-			className="form-signin"
-			noValidate
-			onSubmit={this.onSubmit1.bind(this)}
-			>
-			<div className="form-label-group">
-			<label htmlFor="name">Name</label>
+        className="container valign-wrapper"
+      >
+        <div className="row">
+      <div
+      className="col s12 center-align"
+      style={{ padding: "100px" }}
+      >
+      <div className="card">
+      <center>
+      <div className="makeForm col-8">
+      <form
+      className="form-signin"
+      noValidate
+      onSubmit={this.onSubmit1.bind(this)}
+      >
+      <div className="form-label-group">
+      <label htmlFor="name">Name</label>
 
-			<input
-			id="name"
-			type="text"
-			ref={input =>
+      <input
+      id="name"
+      type="text"
+      ref={input =>
 				(this.eventname = input)
-			}
-			/>
-			</div>
-			<div className="form-label-group">
-			<label htmlFor="date">Date</label>
-			<input
-			id="date"
-			type="date"
-			ref={input =>
+      }
+      />
+      </div>
+      <div className="form-label-group">
+      <label htmlFor="date">Date</label>
+      <input
+      id="date"
+      type="date"
+      ref={input =>
 				(this.eventdate = input)
-			}
-			/>
-			</div>
-			<div className="form-label-group">
-			<label htmlFor="date">
+      }
+        />
+        </div>
+        <div className="form-label-group">
+        <label htmlFor="date">
 			Description
-			</label>
-			<input
-			id="description"
-			type="text"
-			ref={input =>
+        </label>
+        <input
+        id="description"
+        type="text"
+        ref={input =>
 				(this.eventdescription = input)
-			}
-			/>
-			</div>
-			<div className="form-label-group">
-			{this.state.id != "" ? (
+        }
+        />
+        </div>
+        <div className="form-label-group">
+        {this.state.id != "" ? (
 				<ListForm
 				iddqd={this.state.id}
 				/>
 				) : (
 				<button
 				style={{
-					width: "150px",
-					borderRadius: "3px",
-					letterSpacing: "1.5px",
-					marginTop: "1rem"
+  width: "150px",
+  borderRadius: "3px",
+  letterSpacing: "1.5px",
+  marginTop: "1rem"
 				}}
 				type="submit"
 				className="btn btn-lg btn-primary btn-block text-uppercase"
@@ -130,14 +130,14 @@ class EventForm extends Component {
 				</div>
 				</div>
 				);
-	}
+  }
 }
 
 export default withTracker(() => {
-	const handle = Meteor.subscribe("events");
-	return {
-		events: Events.find({}).fetch(),
-		user: Meteor.user(),
-		ready: handle.ready()
-	};
+  const handle = Meteor.subscribe("events");
+  return {
+    events: Events.find({}).fetch(),
+    user: Meteor.user(),
+    ready: handle.ready()
+  };
 })(EventForm);
