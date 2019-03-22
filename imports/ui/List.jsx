@@ -13,10 +13,10 @@ export default class List extends Component {
   render() {
     return (
       <li><span>{this.props.list}</span></li>
-      );
+    );
   }
 }
 
 List.propTypes = {
-  List: PropTypes.object.isRequired
+  list: PropTypes.object.isRequired
 };
