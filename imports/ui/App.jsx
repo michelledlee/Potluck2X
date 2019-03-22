@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Meteor } from "meteor/meteor";
 import { Link } from "react-router-dom";
-import Chat from "./Chat.jsx";
-import Event from "./Event.jsx";
 import BrowseEvents from "./BrowseEvents.jsx";
 import EventRSVP from "./EventRSVP.jsx";
 import RegisterEvent from "./RegisterEvent.jsx";

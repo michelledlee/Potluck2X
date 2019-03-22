@@ -6,9 +6,7 @@ import { Meteor } from "meteor/meteor";
 
 import { withTracker } from "meteor/react-meteor-data";
 
-import Attendee from "./Attendee.jsx";
 import List from "./List.jsx";
-import Event from "./Event.jsx";
 import ListForm from "./ListForm.jsx";
 
 class EventRSVP extends Component {

@@ -4,7 +4,6 @@ import { Meteor } from "meteor/meteor";
 import { AutoForm } from "uniforms-semantic";
 import { withTracker } from "meteor/react-meteor-data";
 
-import Attendee from "./Attendee.jsx";
 import { Events } from "../api/events.js";
 import { Schema } from "./schema.js";
 
@@ -22,13 +21,6 @@ export default class ListForm extends Component {
       item: "",
       quantity: "",
       iteminfo: ""
-      // name: this.props.events.name,
-      // date: this.props.events.date,
-      // time: this.props.events.time,
-      // description: this.props.events.description,
-      // list: this.props.events.list,
-      // createdAt: this.props.events.createdAt,
-      // owner: this.props.events.owner
     };
   }
 
