@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import { AutoForm } from "uniforms-semantic";
-import { withTracker } from "meteor/react-meteor-data";
-
-import { Events } from "../api/events.js";
-import { Schema } from "./schema.js";
 
 export default class ListForm extends Component {
   constructor(props) {

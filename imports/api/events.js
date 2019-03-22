@@ -187,11 +187,13 @@ Meteor.methods({
 
       // if any quantity has not been fulfilled, return with not ready
       if (quantitynumber > 0) {
+        console.log("false");
         return false;
       }
     }
 
     // if looped through and all item quantities are 0, return true
+    console.log("true");
     return true;
   }
 });
