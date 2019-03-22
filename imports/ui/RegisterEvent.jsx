@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-// import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import classnames from "classnames";
 
 class RegisterEvent extends Component {
@@ -52,13 +50,6 @@ class RegisterEvent extends Component {
       rsvp: this.state.rsvp
     };
 
-    // axios
-    //   .post("/events", newEvent)
-    //   .then(res => {
-    //     this.props.history.push("/browseevents");
-    //     console.log(res);
-    //   })
-    //   .catch(err => console.log(err));
   };
 
   render() {
@@ -205,6 +196,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps
-)(withRouter(RegisterEvent));
+export default withRouter(RegisterEvent);
