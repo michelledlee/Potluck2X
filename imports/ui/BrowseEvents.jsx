@@ -36,12 +36,23 @@ class BrowseEvents extends Component {
         return;
       }
       console.log(res);
+      if (res === true) {
+        console.log("TIME TO PARTY");
+        // document.getElementByClassName("card").style.display = "block";
+        document.getElementsByClassName("card")[0].classList.toggle("overlay");
+
+      } else {
+        console.log("nah");
+        document.getElementsByClassName("overlay")[0].classList.toggle("card");
+      }
     });
   }
 
   makeatherender() {
     return this.props.events.map((m, j) => (
       <div className="card col-4" key={m._id}>
+        {this.checkPartyTime(m)}
+        {console.log(m)}
         <span>
           <strong>Host:</strong> {m.owner}
         </span>

@@ -164,17 +164,15 @@ Meteor.methods({
 Meteor.methods({
   "check.list"(event) {
     console.log("check.list");
+    console.log(event);
 
     // Make sure the user is logged in before inserting a task
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
-    // get the event the user is trying to RSVP to
-    let eventdocument = Events.findOne({ _id: event.theid });
-    console.log(eventdocument);
 
     // get the list of items from the event
-    let eventlist = eventdocument.list;
+    let eventlist = event.list;
     let neweventlist = eventlist; // don't want to accidentally change the database one
 
     // iterate through the list and find the matching item and quantity number
@@ -187,28 +185,13 @@ Meteor.methods({
       let quantitynumber = neweventlist[i].split("-")[1];
       console.log("quantity: " + quantitynumber);
 
-      // find the matching item in the list
-      console.log("event.itemname: " + event.itemname);
-      let currentitem = event.itemname.split("-")[0];
-      console.log("currentitem: " + currentitem);
-
-      if (itemname === currentitem) {
-        // update the quantity
-        quantitynumber = quantitynumber - event.itemquantity;
-        console.log("updated quantity: " + quantitynumber);
-        // create the new string
-        let newitem = itemname + "-" + quantitynumber;
-        // update the list
-        neweventlist[i] = newitem;
-        console.log(neweventlist);
-
-        Events.update(
-          { _id: event.theid }, 
-          { $set: {list: neweventlist} });
-
-        break;
-
+      // if any quantity has not been fulfilled, return with not ready
+      if (quantitynumber > 0) {
+        return false;
       }
     }
+
+    // if looped through and all item quantities are 0, return true
+    return true;
   }
 });
