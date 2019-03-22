@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 
-import { withTracker } from "meteor/react-meteor-data";
-
-import { Events } from "../api/events.js";
-
 export default class RSVPwItems extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +14,6 @@ export default class RSVPwItems extends Component {
   }
 
   onSubmit() {
-    // event.preventDefault();
     let data = { list: this.state.list, itemname: this.selecteditem.value, itemquantity: this.amount.value, theid: this.state.objid };
     Meteor.call("events.rsvp", data, (err, res) => {
       if (err) {
@@ -71,9 +66,9 @@ export default class RSVPwItems extends Component {
               type="submit"
               className="btn btn-lg btn-primary btn-block text-uppercase"
             >
-              I'm In!
+              Im In!
             </button>
-            </div>
+          </div>
         </form>
       </div>
     );
@@ -81,7 +76,6 @@ export default class RSVPwItems extends Component {
 }
 
 RSVPwItems.propTypes = {
-  // thelist: PropTypes.arrayOf(PropTypes.string).isRequired
-    theevent: PropTypes.object.isRequired
+  theevent: PropTypes.object.isRequired
 
 };
