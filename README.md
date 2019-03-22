@@ -48,4 +48,4 @@ meteor
 
 ## Link to Video Demonstration
 [Demonstration on YouTube](https://youtu.be/iiKXtHgBpnQ)  
-[Google Slides Presentation](https://docs.google.com/presentation/d/16-ZA5LnjaZsl0-46gaoYuSBdyNK9qfhJlNKrf2EfuZs/edit?usp=sharing)
+[Google Slides Presentation](https://docs.google.com/presentation/d/1jaNBV_fbp1MKP_RDCEQWcnIHKH2poeKRQdOKe0MWu_A/edit?usp=sharing)
