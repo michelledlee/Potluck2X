@@ -35,11 +35,11 @@ Chrome
 2. Select one of the following: 
 + OSX/Linux: install meteor via `curl https://install.meteor.com/ | sh` 
 + Windows: install meteor via (https://www.meteor.com/install)
-2. Navigate to the client directory and execute the following command:
+3. Navigate to the client directory and execute the following command:
 ```
 meteor
 ```
-3. Open `http://localhost:3000` and experience the magic!
+4. Open `http://localhost:3000` and experience the magic!
 
 
 ## Author Link
