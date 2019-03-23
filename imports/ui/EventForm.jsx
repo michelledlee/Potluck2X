@@ -107,7 +107,7 @@ class EventForm extends Component {
   borderRadius: "3px",
   letterSpacing: "1.5px",
   marginTop: "1rem"
-				}}
+				}} //this code looks chaotic. notes would help, assuming this is a liter issue
 				type="submit"
 				className="btn btn-lg btn-primary btn-block text-uppercase"
 				>
